@@ -1,0 +1,153 @@
+package DefHash; # just to make PodWeaver happy
+
+# VERSION
+
+1;
+# ABSTRACT: Define things according to a specification, using hashes
+
+=head1 SPECIFICATION VERSION
+
+ 1
+
+
+=head1 ABSTRACT
+
+This document describes DefHash, a specification for using hashes to define
+things. DefHash was born out of several other projects/specifications like
+L<Sah>, L<Rinci>, L<Riap>, L<Module::Patch>.
+
+
+=head1 SPECIFICATION
+
+In this document, hashes are written in JSON or pseudo-JSON (e.g. contains
+ellipsis C<...> or JavaScript-style comments C<// ...>).
+
+=head2 Definitions
+
+B<defhash> is a regular hash, or dictionary, or associative array (or object, as
+it is called in JavaScript). It has B<properties>, which normally translates to
+the hash keypair. Property names normally translates to hash keys, property
+values translates to hash values. "Normally" is used here because property can
+have attributes and/or alternate values:
+
+ {
+     "v": 1,
+     "prop1": "value1",
+     "prop2": ["value2", ...],
+     "prop1.attr1": ...,
+     "prop1.attr1.subattr1": ...,
+     "prop1._extra1": ...,   // ignored
+     "_extra2": ...,         // ignored
+ }
+
+The above defhash defines two properties: C<prop1> and C<prop2>. C<prop1> has
+two attributes, C<attr1> and C<attr1.subattr1>. Hash keys which start with
+underscore (C<_>) are ignored; this can be used to put extra information.
+Likewise for attributes which starts with underscore.
+
+Property names must follow this regex '\A[a-z][a-z0-9_]*\z' (an
+alphanumeric-only word). Property attributes must follow this regex:
+'\A[a-z][a-z0-9_]*([a-z][a-z0-9_]*)*\z' (a dotted alphanumeric word).
+
+Property value can be anything. It can contain another defhash for defining
+subentities, for example. In Rinci, a function metadata has a property called
+C<args> to define function arguments; its value is a hash of argument names and
+argument specification. Each argument specification is a defhash.
+
+B<Specification> is a set of recognized properties along with whether they are
+required, and their expected values and default values if unspecified. A
+specification can change over time. The C<v> property specifies the
+specification version which the hash follows. Specification version is a
+non-negative integer. If unspecified, it is assumed to be 1. But it can also be
+0.
+
+The defhash can contain B<alternate property values> for each property. The most
+common use-case for this is for properties that contain some text in some
+language, and there is a need to provide translation to other languages.
+Alternate value is signified in hash key using the '{...}' syntax, after the
+property and attribute name. Example:
+
+ {
+     "summary": "An English summary",
+     "summary{lang:id_ID}": "Ringkasan dalam bahasa Indonesia",
+     "dbi.debug": 1,
+     "dbi.debug{env:web prod:1}": 0,
+ }
+
+The alternate specification is written with C<{> followed by one or more pair of
+key values separated by whitespace, followed by C<}>. The keys should be sorted
+ascibetically. Keys must follow this regex '\A[a-z][a-z0-9_]*\z'. Values must
+follow this regex: '\A[A-Za-z0-9_]+\z'.
+
+=head2 Why use hash?
+
+ XXX allow us to evolve
+
+ XXX data structure, supported by all high-level programming language natively,
+
+ XXX being a data structure, ...
+
+ XXX merging, unordered, ...
+
+
+=head2 Common properties
+
+These are the list of properties that all specifications must recognize:
+
+=over 4
+
+=item * B<v> => INT (default: 1)
+
+Must not have attributes or alternate values. This specifies the version of
+specification that the defhash is following.
+
+=item * B<defhash_v> => INT (default: 1)
+
+Must not have attributes or alternate values. This specifies the version of
+DefHash specification itself. It is hoped that this should never change, so
+normally a defhash need not specify this.
+
+=item * B<summary> => TEXT
+
+A short (< 72 character), one-line summary about the thing that is described.
+For example, in Rinci function metadata, the C<summary> describes what the
+function does:
+
+ // metadata for function 'sum_array'
+ {
+     "summary": "Sum all the elements of an array numerically",
+     ...
+ }
+
+=item * B<description> => TEXT
+
+A longer description. Normally a paragraph or longer of text. The text is
+assumed to be marked up in Markdown.
+
+=item * B<tags> => ARRAY[TEXT]
+
+A list of one or more tags, can be used to categorize the thing that is
+described.
+
+=item * B<default_lang> => TEXT (default: en_US)
+
+Default language.
+
+
+=head2 When should specification version be increased?
+
+When a backward-incompatible change is introduced. This is defined to be removal
+of a recognized property, or the semantic change of an existing property, or
+other incompatible change. For example,
+
+ XXX (modp 1->2, 2->3; ri ->2, not using defhash but that is not the real reason, removal of features property)
+ XXX riap also bumped to 2 just because it uses hash
+
+
+=head1 SEE ALSO
+
+Semantic Versioning, L<http://semver.org>
+
+Markdown specification
+
+=cut
