@@ -90,14 +90,15 @@ metadata:
 
 =back
 
-=head2 Why write definition in a hash?
+=head2 Why write definitions in a hash?
 
 Hash is a basic data structure that is supported by all high-level languages,
-including Perl, Python, PHP, Ruby, and JavaScript, making the defini. It is easy
-to merge.
+including Perl, Python, PHP, Ruby, and JavaScript. It is particularly easy to
+merge. It makes checking the existence of value of property very easy, by just
+accessing the hash's key.
 
 B<... instead of text (like POD)?> Putting definition in a data structure makes
-it easier to manipulate (merge, parse, normalize, convert, etc).
+it easier to manipulate the definition (merge, parse, normalize, convert, etc).
 
 B<... instead of array?> Hash allows us to evolve more easily. If we deprecate a
 property or add new ones, elements don't have to shift like in array.
