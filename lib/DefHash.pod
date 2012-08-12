@@ -142,7 +142,7 @@ environment, C<env>; the ordering should be asciibetical and a care should be
 taken to not be ambiguous, since attribute names can only be words):
 
  {
-     "default.lang": "en_US",
+     "default_lang": "en_US",
      "summary": "An English summary",
      "summary.alt.env_lang.web.id_ID":"(Summary in Indonesian, for web)",
      "summary.alt.env_lang.cmdline.id_ID":"(Summary in Indonesian, for cmdline)"
