@@ -24,12 +24,15 @@ ellipsis C<...> or JavaScript-style comments C<// ...>).
 
 =head2 Definitions
 
-B<defhash> is a regular hash, or dictionary (as it is called in Python), or
-associative array (as it is called in PHP), or object (as it is called in
-JavaScript). A defhash has B<properties>, which normally translates to the hash
-keypair. Property names normally translates to hash keys, while property values
-translates to hash values. "Normally" is used here because property can have
-attributes:
+=over 4
+
+=item * B<defhash>
+
+A regular hash, or dictionary (as it is called in Python), or associative array
+(as it is called in PHP), or object (as it is called in JavaScript). A defhash
+has B<properties>, which normally translates to the hash keypair. Property names
+normally translates to hash keys, while property values translates to hash
+values. "Normally" is used here because property can have attributes:
 
  {
      "v": 1,                         // set value for property 'v'
@@ -56,6 +59,36 @@ C<args> to define function arguments; its value is a hash of argument names and
 argument specification. Each argument specification is a defhash.
 
 Property attributes can be used to store extra data into a property.
+
+=item * B<specification>
+
+A set of recognized properties and property attributes, including whether the
+properties are required, expected values (schema) for properties and attributes,
+and default values.
+
+For example, Rinci is a specification for function metadata (among others). One
+writes a defhash (metadata) for a function, it contains properties to describe
+the function. Rinci specifies what properties are available and the meaning and
+expected values for each of those properties. An example of a Rinci function
+metadata:
+
+ // metadata for function 'sum'
+ {
+     "v": 2, // version of Rinci specification
+     "summary": "Sum all the elements of array numerically",
+     "description":
+         "Non-numeric elements in array will be skipped. Empty array
+          or no numeric elements in array will result in 0 for the
+          sum.",
+     "args": {
+         "array": {
+             "summary": "The array to sum",
+             "schema": "array*",
+         },
+     },
+ }
+
+=back
 
 =head2 Why write definition in a hash?
 
@@ -97,7 +130,7 @@ A short (< 72 character), one-line summary about the thing that is described.
 For example, in Rinci function metadata, the C<summary> describes what the
 function does:
 
- // metadata for function 'sum_array'
+ // metadata for function 'sum'
  {
      "summary": "Sum all the elements of an array numerically",
      ...
@@ -149,10 +182,6 @@ taken to not be ambiguous, since attribute names can only be words):
  }
 
 =back
-
-B<Specification> is a set of recognized properties and property attributes,
-including whether the properties are required, expected values (schema) for
-properties and attributes, and default values.
 
 =head2 When should specification version be increased?
 
