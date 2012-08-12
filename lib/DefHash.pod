@@ -28,7 +28,7 @@ B<defhash> is a regular hash, or dictionary, or associative array (or object, as
 it is called in JavaScript). It has B<properties>, which normally translates to
 the hash keypair. Property names normally translates to hash keys, property
 values translates to hash values. "Normally" is used here because property can
-have attributes and/or alternate values:
+have attributes:
 
  {
      "v": 1,
@@ -54,30 +54,41 @@ subentities, for example. In Rinci, a function metadata has a property called
 C<args> to define function arguments; its value is a hash of argument names and
 argument specification. Each argument specification is a defhash.
 
-B<Specification> is a set of recognized properties along with whether they are
-required, and their expected values and default values if unspecified. A
-specification can change over time. The C<v> property specifies the
-specification version which the hash follows. Specification version is a
-non-negative integer. If unspecified, it is assumed to be 1. But it can also be
-0.
+Property attributes can be used to store extra data into a property. Some
+predefined attributes are:
 
-The defhash can contain B<alternate property values> for each property. The most
-common use-case for this is for properties that contain some text in some
-language, and there is a need to provide translation to other languages.
-Alternate value is signified in hash key using the '{...}' syntax, after the
-property and attribute name. Example:
+=over 4
+
+=item * alt
+
+This attribute can be used to store alternate property values. The most common
+are:
+
+ alt.lang.<LANG_CODE>
+
+Example:
 
  {
      "summary": "An English summary",
-     "summary{lang:id_ID}": "Ringkasan dalam bahasa Indonesia",
-     "dbi.debug": 1,
-     "dbi.debug{env:web prod:1}": 0,
+     "summary.alt.lang.id_ID": "Ringkasan dalam bahasa Indonesia",
  }
 
-The alternate specification is written with C<{> followed by one or more pair of
-key values separated by whitespace, followed by C<}>. The keys should be sorted
-ascibetically. Keys must follow this regex '\A[a-z][a-z0-9_]*\z'. Values must
-follow this regex: '\A[A-Za-z0-9_]+\z'.
+Another example (alternate value for different language, C<lang>, and different
+environment, C<env>; the ordering should be asciibetical and a care should be
+taken to not be ambiguous, since attribute names can only be words):
+
+ {
+     "default.lang": "en_US",
+     "summary": "An English summary",
+     "summary.alt.env_lang.web.id_ID":"(Summary in Indonesian, for web)",
+     "summary.alt.env_lang.cmdline.id_ID":"(Summary in Indonesian, for cmdline)"
+ }
+
+=back
+
+B<Specification> is a set of recognized properties and property attributes,
+including whether the properties are required, expected values (schema) for
+properties and attributes, and default values.
 
 =head2 Why use hash?
 
@@ -98,14 +109,19 @@ These are the list of properties that all specifications must recognize:
 
 =item * B<v> => INT (default: 1)
 
-Must not have attributes or alternate values. This specifies the version of
-specification that the defhash is following.
+Must not have attributes. This specifies the version of specification that the
+defhash is following.
+
+A specification can change over time. The C<v> property specifies the
+specification version which the hash follows. Specification version is a
+non-negative integer. If unspecified, it is assumed to be 1. But it can also be
+0.
 
 =item * B<defhash_v> => INT (default: 1)
 
-Must not have attributes or alternate values. This specifies the version of
-DefHash specification itself. It is hoped that this should never change, so
-normally a defhash need not specify this.
+Must not have attributes. This specifies the version of DefHash specification
+itself. It is hoped that this should never change, so normally a defhash need
+not specify this.
 
 =item * B<summary> => TEXT
 
