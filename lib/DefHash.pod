@@ -24,25 +24,26 @@ ellipsis C<...> or JavaScript-style comments C<// ...>).
 
 =head2 Definitions
 
-B<defhash> is a regular hash, or dictionary, or associative array (or object, as
-it is called in JavaScript). It has B<properties>, which normally translates to
-the hash keypair. Property names normally translates to hash keys, property
-values translates to hash values. "Normally" is used here because property can
-have attributes:
+B<defhash> is a regular hash, or dictionary (as it is called in Python), or
+associative array (as it is called in PHP), or object (as it is called in
+JavaScript). A defhash has B<properties>, which normally translates to the hash
+keypair. Property names normally translates to hash keys, while property values
+translates to hash values. "Normally" is used here because property can have
+attributes:
 
  {
-     "v": 1,
-     "prop1": "value1",
-     "prop2": ["value2", ...],
-     "prop1.attr1": ...,
-     "prop1.attr1.subattr1": ...,
-     "prop1._extra1": ...,   // ignored
-     "_extra2": ...,         // ignored
+     "v": 1,                         // set value for property 'v'
+     "prop1": "value1",              // set value for property 'prop1'
+     "prop2": ["value2", ...],       // set value for property 'prop2'
+     "prop1.attr1": ...,             // set value for prop1's attribute
+     "prop1.attr1.subattr1": ...,    // set value for prop1's attribute
+     "_extra1": ...,                 // ignored property, starts with _
+     "prop1._extra_attr": ...,       // ignored attribute, starts with _
  }
 
 The above defhash defines two properties: C<prop1> and C<prop2>. C<prop1> has
 two attributes, C<attr1> and C<attr1.subattr1>. Hash keys which start with
-underscore (C<_>) are ignored; this can be used to put extra information.
+underscore (C<_>) are ignored; this can be used to put extraneous information.
 Likewise for attributes which starts with underscore.
 
 Property names must follow this regex '\A[a-z][a-z0-9_]*\z' (an
@@ -54,52 +55,19 @@ subentities, for example. In Rinci, a function metadata has a property called
 C<args> to define function arguments; its value is a hash of argument names and
 argument specification. Each argument specification is a defhash.
 
-Property attributes can be used to store extra data into a property. Some
-predefined attributes are:
+Property attributes can be used to store extra data into a property.
 
-=over 4
+=head2 Why write definition in a hash?
 
-=item * alt
+Hash is a basic data structure that is supported by all high-level languages,
+including Perl, Python, PHP, Ruby, and JavaScript, making the defini. It is easy
+to merge.
 
-This attribute can be used to store alternate property values. The most common
-are:
+B<... instead of text (like POD)?> Putting definition in a data structure makes
+it easier to manipulate (merge, parse, normalize, convert, etc).
 
- alt.lang.<LANG_CODE>
-
-Example:
-
- {
-     "summary": "An English summary",
-     "summary.alt.lang.id_ID": "Ringkasan dalam bahasa Indonesia",
- }
-
-Another example (alternate value for different language, C<lang>, and different
-environment, C<env>; the ordering should be asciibetical and a care should be
-taken to not be ambiguous, since attribute names can only be words):
-
- {
-     "default.lang": "en_US",
-     "summary": "An English summary",
-     "summary.alt.env_lang.web.id_ID":"(Summary in Indonesian, for web)",
-     "summary.alt.env_lang.cmdline.id_ID":"(Summary in Indonesian, for cmdline)"
- }
-
-=back
-
-B<Specification> is a set of recognized properties and property attributes,
-including whether the properties are required, expected values (schema) for
-properties and attributes, and default values.
-
-=head2 Why use hash?
-
- XXX allow us to evolve
-
- XXX data structure, supported by all high-level programming language natively,
-
- XXX being a data structure, ...
-
- XXX merging, unordered, ...
-
+B<... instead of array?> Hash allows us to evolve more easily. If we deprecate a
+property or add new ones, elements don't have to shift like in array.
 
 =head2 Common properties
 
@@ -149,6 +117,42 @@ described.
 
 Default language.
 
+=head2 Property attributes
+
+Below is the list of property attributes that must be supported.
+
+=over 4
+
+=item * alt
+
+This attribute can be used to store alternate property values. The most common
+are:
+
+ alt.lang.<LANG_CODE>
+
+Example:
+
+ {
+     "summary": "An English summary",
+     "summary.alt.lang.id_ID": "Ringkasan dalam bahasa Indonesia",
+ }
+
+Another example (alternate value for different language, C<lang>, and different
+environment, C<env>; the ordering should be asciibetical and a care should be
+taken to not be ambiguous, since attribute names can only be words):
+
+ {
+     "default.lang": "en_US",
+     "summary": "An English summary",
+     "summary.alt.env_lang.web.id_ID":"(Summary in Indonesian, for web)",
+     "summary.alt.env_lang.cmdline.id_ID":"(Summary in Indonesian, for cmdline)"
+ }
+
+=back
+
+B<Specification> is a set of recognized properties and property attributes,
+including whether the properties are required, expected values (schema) for
+properties and attributes, and default values.
 
 =head2 When should specification version be increased?
 
