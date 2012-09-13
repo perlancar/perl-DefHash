@@ -30,9 +30,10 @@ ellipsis C<...> or JavaScript-style comments C<// ...>).
 
 A regular hash, or dictionary (as it is called in Python), or associative array
 (as it is called in PHP), or object (as it is called in JavaScript). A defhash
-has B<properties>, which normally translates to the hash keypair. Property names
-normally translates to hash keys, while property values translates to hash
-values. "Normally" is used here because property can have attributes:
+has B<properties>, which normally translates to the hash key/value pairs.
+Property names normally translates to hash keys, while property values
+translates to hash values. "Normally" is used here because property can have
+attributes, which are also written as hash key/value pairs:
 
  {
      "v": 1,                         // set value for property 'v'
@@ -45,7 +46,7 @@ values. "Normally" is used here because property can have attributes:
  }
 
 The above defhash defines two properties: C<prop1> and C<prop2>. C<prop1> has
-two attributes, C<attr1> and C<attr1.subattr1>. Hash keys which start with
+two attributes, C<attr1> and C<attr1.subattr1>. Properties which start with
 underscore (C<_>) are ignored; this can be used to put extraneous information.
 Likewise for attributes which starts with underscore.
 
@@ -124,6 +125,24 @@ non-negative integer. If unspecified, it is assumed to be 1. But it can also be
 Must not have attributes. This specifies the version of DefHash specification
 itself. It is hoped that this should never change, so normally a defhash need
 not specify this.
+
+=item * B<summary> => TEXT
+
+A short (usually single-word) name for the thing that is described. For example,
+in Rinci function metadata, it is the function's name. In Sah, it is a name of
+the schema that can be used by the human compiler.
+
+ // metadata for function 'sum'
+ {
+     "name": "sum",
+     ...
+ }
+
+ // schema for describing positive integer
+ ["int", {
+     "name": "pos_int",
+     "min": 0,
+ }]
 
 =item * B<summary> => TEXT
 
