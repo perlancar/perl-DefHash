@@ -184,6 +184,8 @@ described.
 
 Default language.
 
+=back
+
 =head2 Property attributes
 
 Below is the list of property attributes that must be supported.
