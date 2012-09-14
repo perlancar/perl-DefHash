@@ -61,6 +61,14 @@ argument specification. Each argument specification is a defhash.
 
 Property attributes can be used to store extra data into a property.
 
+The hash itself can have attributes, stored in .<attr> keys:
+
+ {
+     "attr1": ...,
+     "attr2.subattr": ...,
+     "_ignored": ...
+ }
+
 =item * B<specification>
 
 A set of recognized properties and property attributes, including whether the
@@ -110,15 +118,15 @@ These are the list of properties that all specifications must recognize:
 
 =over 4
 
-=item * B<v> => INT (default: 1)
+=item * B<v> => FLOAT (default: 1)
 
 Must not have attributes. This specifies the version of specification that the
 defhash is following.
 
 A specification can change over time. The C<v> property specifies the
 specification version which the hash follows. Specification version is a
-non-negative integer. If unspecified, it is assumed to be 1. But it can also be
-0.
+non-negative real number, but integer is recommended. If unspecified, it is
+assumed to be 1. It can also be 0.
 
 =item * B<defhash_v> => INT (default: 1)
 
