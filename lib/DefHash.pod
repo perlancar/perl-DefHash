@@ -99,7 +99,7 @@ metadata:
 
 =back
 
-=head2 Why write definitions in a hash?
+=head2 Why write definitions in a defhash?
 
 Hash is a basic data structure that is supported by all high-level languages,
 including Perl, Python, PHP, Ruby, and JavaScript. It is particularly easy to
@@ -111,6 +111,12 @@ it easier to manipulate the definition (merge, parse, normalize, convert, etc).
 
 B<... instead of array?> Hash allows us to evolve more easily. If we deprecate a
 property or add new ones, elements don't have to shift like in array.
+
+B<... instead of a regular or nested hash?> Well, defhash is a regular hash. It
+is just a convention to limit the range of valid keys (only alphanumeric
+characters) in exchange for additional metadata for each key (which is stored as
+regular keys in the same hash). Plus it establishes convention for some
+predefined properties and attributes.
 
 =head2 Common properties
 
