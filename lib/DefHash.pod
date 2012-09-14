@@ -64,9 +64,9 @@ Property attributes can be used to store extra data into a property.
 The hash itself can have attributes, stored in .<attr> keys:
 
  {
-     "attr1": ...,
-     "attr2.subattr": ...,
-     "_ignored": ...
+     ".attr1": ...,
+     ".attr2.subattr": ...,
+     "._ignored": ...
  }
 
 =item * B<specification>
