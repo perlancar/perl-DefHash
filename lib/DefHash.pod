@@ -183,7 +183,7 @@ described.
 =item * B<default_lang> => TEXT
 
 Default language. Defaults to parent's value, or if parent does not exist, from
-environment LANG, or if undefined, C<en_US>.
+environment LANG, or if undefined or C<C>, C<en_US>.
 
 =back
 
