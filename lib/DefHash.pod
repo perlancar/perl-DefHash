@@ -22,6 +22,10 @@ L<Sah>, L<Rinci>, L<Riap>, L<Module::Patch>.
 In this document, hashes are written in JSON or pseudo-JSON (e.g. contains
 ellipsis C<...> or JavaScript-style comments C<// ...>).
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL "NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in RFC 2119.
+
 =head2 Definitions
 
 =over 4
