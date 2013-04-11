@@ -189,6 +189,21 @@ described.
 Default language. Defaults to parent's value, or if parent does not exist, from
 environment LANG, or if undefined or C<C>, C<en_US>.
 
+=item * B<x> => ANY
+
+This property is used to store extended (application-specific) attributes, much
+like the C<X-> prefix in HTTP or email headers. This property can be used as an
+alternative to using underscore prefix (e.g. C<_foo>). Some processing tools
+strip properties/attributes that begin with underscores, so to pass extended
+metadata around, it might be more convenient to use the C<x> property.
+
+Example:
+
+ {
+     "x.myapp.foo" => 1,
+     "x.myapp.bar" => "some value",
+ }
+
 =back
 
 =head2 Property attributes
