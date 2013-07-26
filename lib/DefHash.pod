@@ -34,10 +34,9 @@ interpreted as described in RFC 2119.
 
 A regular hash, or dictionary (as it is called in Python), or associative array
 (as it is called in PHP), or object (as it is called in JavaScript). A defhash
-has B<properties>, which normally translates to the hash key/value pairs.
-Property names normally translates to hash keys, while property values
-translates to hash values. "Normally" is used here because property can have
-attributes, which are also written as hash key/value pairs:
+has B<properties>, which translates to the hash key/value pairs. B<Property
+names> translates to hash keys, while B<property values> translates to hash
+values. The same hash key/value pairs are used to store B<property attributes>:
 
  {
      "v": 1,                         // set value for property 'v'
@@ -50,13 +49,14 @@ attributes, which are also written as hash key/value pairs:
  }
 
 The above defhash defines two properties: C<prop1> and C<prop2>. C<prop1> has
-two attributes, C<attr1> and C<attr1.subattr1>. Properties which start with
-underscore (C<_>) are ignored; this can be used to put extraneous information.
-Likewise for attributes which starts with underscore.
+two attributes, C<attr1> and C<attr1.subattr1>. Properties with names starting
+with underscore (C<_>) are ignored; this can be used to put extra information.
+Likewise for attribute names which start with underscore.
 
 Property names must follow this regex '\A[a-z][a-z0-9_]*\z' (an
-alphanumeric-only word). Property attributes must follow this regex:
-'\A[a-z][a-z0-9_]*([a-z][a-z0-9_]*)*\z' (a dotted alphanumeric word).
+Lowercase-alphanumeric-only word). Property attributes must follow this regex:
+'\A[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*\z' (a dotted lowercase-alphanumeric
+word).
 
 Property value can be anything. It can contain another defhash for defining
 subentities, for example. In Rinci, a function metadata has a property called
