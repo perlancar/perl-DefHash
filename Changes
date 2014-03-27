@@ -1,5 +1,13 @@
 Revision history for DefHash
 
+1.0.4   2014-03-27 (SHARYANTO)
+
+        - Specify that each tag in 'tags' can also be a defhash (this is already
+          practised by Perinci::Sub::Gen::AccessTable for some time).
+
+        - Fix typos.
+
+
 1.0.3   2013-04-11 (SHARYANTO)
 
         - Introduce property 'x'.
