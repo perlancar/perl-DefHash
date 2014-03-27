@@ -179,10 +179,18 @@ function does:
 A longer description. Normally a paragraph or longer of text. The text is
 assumed to be marked up in Markdown.
 
-=item * B<tags> => ARRAY[TEXT]
+=item * B<tags> => ARRAY[TEXT | DEFHASH]
 
 A list of one or more tags, can be used to categorize the thing that is
-described.
+described. Example:
+
+ "tags": ["important", "category:filtering", "category:filtering-for-foo"],
+
+Each tag can also be a defhash for more detailed specification:
+
+ "tags": ["important",
+          {"name":"category:filtering", "summary":"filtering field"},
+          {"name":"category:filtering-for-foo", "summary":"filtering for field 'foo'"}]
 
 =item * B<default_lang> => TEXT
 
