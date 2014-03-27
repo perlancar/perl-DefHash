@@ -144,7 +144,7 @@ Must not have attributes. This specifies the version of DefHash specification
 itself. It is hoped that this should never change, so normally a defhash need
 not specify this.
 
-=item * B<summary> => TEXT
+=item * B<name> => TEXT
 
 A short (usually single-word) name for the thing that is described. For example,
 in Rinci function metadata, it is the function's name. In Sah, it is a name of
