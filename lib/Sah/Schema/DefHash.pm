@@ -19,6 +19,7 @@ $SCHEMAS{defhash} = [hash => {
         description => {},
         tags => {},
         default_lang => {},
+        x => {},
     },
 
     keys => {
