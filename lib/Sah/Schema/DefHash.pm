@@ -9,8 +9,18 @@ use warnings;
 
 our %SCHEMAS;
 
-$SCHEMAS{defhash} = [
-    'hash',
+$SCHEMAS{defhash} = [hash => {
+    # tmp
+    _prop => {
+        v => {},
+        defhash_v => {},
+        name => {},
+        summary => {},
+        description => {},
+        tags => {},
+        default_lang => {},
+    },
+
     keys => {
 
         v         => ['float*', default=>1],
@@ -75,14 +85,13 @@ $SCHEMAS{defhash} = [
     },
     'keys.restrict' => 0,
     'allowed_keys_re' => qr/\A\w+(\.\w+)*\z/,
-];
+}];
 
-$SCHEMAS{defhash_v1} = [
-    'defhash',
+$SCHEMAS{defhash_v1} = [defhash => {
     keys => {
         defhash_v => ['int*', is=>1],
     },
-];
+}];
 
 # XXX check known attributes (.alt, etc)
 # XXX check alt.XXX format (e.g. must be alt\.(lang\.\w+|env_lang\.\w+)
