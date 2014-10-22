@@ -15,6 +15,7 @@ $SCHEMAS{defhash} = [hash => {
         v => {},
         defhash_v => {},
         name => {},
+        caption => {},
         summary => {},
         description => {},
         tags => {},
@@ -42,6 +43,10 @@ $SCHEMAS{defhash} = [hash => {
                     'max_len.err_msg'   => 'should be short',
                 },
             ],
+        ],
+
+        caption   => [
+            'str*',
         ],
 
         summary   => [

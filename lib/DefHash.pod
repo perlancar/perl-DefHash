@@ -162,6 +162,10 @@ the schema that can be used by the human compiler.
      "min": 0,
  }]
 
+=item * B<caption> => text
+
+Like C<name>, but for display purposes.
+
 =item * B<summary> => TEXT
 
 A short (< 72 character), one-line summary about the thing that is described.
