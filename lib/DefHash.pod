@@ -130,8 +130,7 @@ These are the list of properties that all specifications must recognize:
 
 =item * B<v> => FLOAT (default: 1)
 
-Must not have attributes. This specifies the version of specification that the
-defhash is following.
+This specifies the version of specification that the defhash is following.
 
 A specification can change over time. The C<v> property specifies the
 specification version which the hash follows. Specification version is a
@@ -140,9 +139,8 @@ assumed to be 1. It can also be 0.
 
 =item * B<defhash_v> => INT (default: 1)
 
-Must not have attributes. This specifies the version of DefHash specification
-itself. It is hoped that this should never change, so normally a defhash need
-not specify this.
+This specifies the version of DefHash specification itself. It is hoped that
+this should never change, so normally a defhash need not specify this.
 
 =item * B<name> => TEXT
 
