@@ -254,16 +254,16 @@ specification):
      "summary.alt.bool.not": "Do not parse TCP connections",
  }
 
-Another kind of alternate is grammatical variance based on noun numbers
-(C<alt.numnoun.WHICH> where C<WHICH> can be C<singular> or C<plural>). Example
+Another kind of alternate is grammatical variance based on noun plurality
+(C<alt.plurality.WHICH> where C<WHICH> can be C<singular> or C<plural>). Example
 (in a Rinci function argument's specification, where an array argument like
-C<file> translates in a CLI environment to multiple C<--file> option
+C<files> translates in a CLI environment to multiple C<--file> option
 specification):
 
- "file": {
+ "files": {
      "schema": ["array*", {"of":"str*"}],
      "summary": "Specify one or more files to check",
-     "summary.alt.numnoun.singular": "Add a file to check (can be specified multiple times)",
+     "summary.alt.plurality.singular": "Add a file to check (can be specified multiple times)",
  }
 
 Combination of alternates. When two or more alternates is combined, they must be
