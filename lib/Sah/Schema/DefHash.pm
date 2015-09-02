@@ -1,11 +1,10 @@
 package Sah::Schema::DefHash;
 
-use 5.010001;
+# DATE
+# VERSION
+
 use strict;
 use warnings;
-
-# VERSION
-# DATE
 
 our %SCHEMAS;
 
