@@ -1,5 +1,12 @@
 Revision history for DefHash
 
+1.0.11  2015-09-03 (PERLANCAR)
+
+	- No spec changes.
+
+	- Remove requirement of perl 5.010001.
+
+
 1.0.10  2015-04-24 (PERLANCAR)
 
 	- Introduce 'prop(LANG)' as shortcut for prop.alt.lang.LANG.
