@@ -115,19 +115,6 @@ $SCHEMAS{defhash_v1} = [defhash => {
 This module contains L<Sah> schemas to validate L<DefHash>.
 
 
-=head1 SCHEMAS
-
-=over
-
-=item * defhash
-
-=item * defhash_v1
-
-=back
-
-
-=head1 SEE ALSO
-
-L<Sah>, L<Data::Sah>
+=head1 append:SEE ALSO
 
 L<DefHash>
