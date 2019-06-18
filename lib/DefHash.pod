@@ -17,6 +17,30 @@ things. DefHash was born out of several other projects/specifications like
 L<Sah>, L<Rinci>, L<Riap>, L<Module::Patch>.
 
 
+=head1 SYNOPSIS
+
+A function returning a list of books from database, where each book is a
+hash (DefHash):
+
+ sub list_books {
+     my $search_title = shift;
+
+     $search_title = "%$search_title%" unless $search_title =~ /[%?]/;
+     my $sth = $dbh->prepare("SELECT * FROM books WHERE title=?");
+     $sth->execute($search_title);
+
+     my @books;
+     while (my $row = $sth->fetchrow_hashref) {
+         push @books, {
+             title   => $row->{title},
+             summary => $row->{abstract},
+             tags    => [($row->{in_print} ? () : ("out-of-print"))],
+         };
+     }
+     @books;
+ }
+
+
 =head1 SPECIFICATION
 
 In this document, hashes are written in JSON or pseudo-JSON (e.g. contains
