@@ -331,4 +331,8 @@ Semantic Versioning, L<http://semver.org>
 
 Markdown specification
 
+Implementation: L<Hash::DefHash> is the official implementation in Perl to check
+and manipulate DefHash. Other modules: L<Regexp::Pattern::DefHash>,
+L<Sah::Schemas::DefHash>.
+
 =cut
