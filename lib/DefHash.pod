@@ -66,10 +66,15 @@ values. The same hash key/value pairs are used to store B<property attributes>:
      "v": 1,                         // set value for property 'v'
      "prop1": "value1",              // set value for property 'prop1'
      "prop2": ["value2", ...],       // set value for property 'prop2'
+
      "prop1.attr1": ...,             // set value for prop1's attribute
      "prop1.attr1.subattr1": ...,    // set value for prop1's attribute
+
      "_extra1": ...,                 // ignored property, starts with _
      "prop1._extra_attr": ...,       // ignored attribute, starts with _
+
+     ".attr1": ...,                  // set value for the hash's attribute
+     ".attr1.subattr1": ...,         // set value for the hash's attribute
  }
 
 The above defhash defines two properties: C<prop1> and C<prop2>. C<prop1> has
@@ -79,7 +84,7 @@ Likewise for attribute names which start with underscore.
 
 Property names must follow this regex '\A[a-z_][a-z0-9_]*\z' (a lowercase
 alphanumeric-only word). Property attributes must follow this regex:
-'\A[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)+\z' (a dotted lowercase-alphanumeric
+'\A([a-z_][a-z0-9_]*)?(\.[a-z_][a-z0-9_]*)+\z' (a dotted lowercase-alphanumeric
 word).
 
 Property value can be anything. It can contain another defhash for defining
