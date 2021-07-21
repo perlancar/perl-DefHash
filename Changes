@@ -1,3 +1,26 @@
+1.0.13  2021-07-21  Released-By: PERLANCAR; Urgency: medium; Backward-Incompatible: yes
+
+        [INCOMPATIBLE CHANGES]
+
+        - [removed] Remove support for "PROP(LANG)" syntax, to make DefHash
+          rules simpler and more orthogonal. This must now be written as
+          "PROP.alt.lang.LANG".
+
+	- Change alt combination rule. Previously, when multiple alt subjects
+          are specified, for example lang=id_ID and env=cmdline, it must be
+          written as "PROP.alt.env_lang.cmdline.id_ID". It is now changed to
+          either "PROP.alt.env.cmdline.lang.id_ID" or
+          "PROP.alt.lang.id_ID.env.cmdline". Implementations are free to do a
+          first-match when getting the property's value.
+
+        [OTHERS]
+
+        - Make it clear that uppercase letters are acceptable in
+          property/attribute name. Tweak the regexes.
+
+	- Mention implementations.
+
+
 1.0.12  2019-06-18  Released-By: PERLANCAR
 
         - No spec changes.
