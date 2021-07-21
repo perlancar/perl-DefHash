@@ -70,8 +70,6 @@ values. The same hash key/value pairs are used to store B<property attributes>:
      "prop1.attr1.subattr1": ...,    // set value for prop1's attribute
      "_extra1": ...,                 // ignored property, starts with _
      "prop1._extra_attr": ...,       // ignored attribute, starts with _
-
-     "prop(en)",                     // equivalent/normalizable to prop.alt.lang.en
  }
 
 The above defhash defines two properties: C<prop1> and C<prop2>. C<prop1> has
@@ -79,11 +77,10 @@ two attributes, C<attr1> and C<attr1.subattr1>. Properties with names starting
 with underscore (C<_>) are ignored; this can be used to put extra information.
 Likewise for attribute names which start with underscore.
 
-Property names must follow this regex '\A[a-z][a-z0-9_]*\z' (an
-Lowercase-alphanumeric-only word). Property attributes must follow this regex:
-'\A[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*\z' (a dotted lowercase-alphanumeric
-word). An exception is some shortcuts which will be normalized during further
-processing: "foo(LANG)" is a shortcut for "foo.alt.lang.LANG".
+Property names must follow this regex '\A[a-z_][a-z0-9_]*\z' (a lowercase
+alphanumeric-only word). Property attributes must follow this regex:
+'\A[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)+\z' (a dotted lowercase-alphanumeric
+word).
 
 Property value can be anything. It can contain another defhash for defining
 subentities, for example. In Rinci, a function metadata has a property called
