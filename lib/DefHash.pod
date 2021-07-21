@@ -1,5 +1,8 @@
 package DefHash; # just to make PodWeaver happy
 
+# AUTHORITY
+# DATE
+# DIST
 # VERSION
 
 1;
@@ -82,10 +85,10 @@ two attributes, C<attr1> and C<attr1.subattr1>. Properties with names starting
 with underscore (C<_>) are ignored; this can be used to put extra information.
 Likewise for attribute names which start with underscore.
 
-Property names must follow this regex '\A[a-z_][a-z0-9_]*\z' (a lowercase
+Property names must follow this regex '\A[A-Za-z_][A-Za-z0-9_]*\z' (an
 alphanumeric-only word). Property attributes must follow this regex:
-'\A([a-z_][a-z0-9_]*)?(\.[a-z_][a-z0-9_]*)+\z' (a dotted lowercase-alphanumeric
-word).
+'\A([A-Za-z_][A-Za-z0-9_]*)?(\.[A-Za-z_][A-Za-z0-9_]*)+\z' (a dotted
+alphanumeric-only word).
 
 Property value can be anything. It can contain another defhash for defining
 subentities, for example. In Rinci, a function metadata has a property called
