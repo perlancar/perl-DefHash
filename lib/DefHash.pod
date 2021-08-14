@@ -10,7 +10,7 @@ package DefHash; # just to make PodWeaver happy
 
 =head1 SPECIFICATION VERSION
 
- 1
+ 2
 
 
 =head1 ABSTRACT
@@ -169,10 +169,9 @@ specification version which the hash follows. Specification version is a
 non-negative real number, but integer is recommended. If unspecified, it is
 assumed to be 1. It can also be 0.
 
-=item * B<defhash_v> => INT (default: 1)
+=item * B<defhash_v> => INT (default: 2)
 
-This specifies the version of DefHash specification itself. It is hoped that
-this should never change, so normally a defhash need not specify this.
+This specifies the version of DefHash specification itself.
 
 =item * B<name> => TEXT
 
